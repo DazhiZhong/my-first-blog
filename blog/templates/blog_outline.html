@@ -3,7 +3,13 @@
 {% block outline %}
 {% for object in allblog %}
 <h1><strong>  {{object.title}}</strong>
+<<<<<<< HEAD
 {% load static%}
+=======
+    <img src="/{{object.image}}" alt="{{ object.title}}" height="75" width="300"  align="middle">
+    </h1>
+    <button onclick="window.location.href='{{object.get_absolute_url}}'" > 购买 </button>
+>>>>>>> cd68e2bb786b43ac75083bb12d531d44531c7110
 
     <img src="/{{ object.image}}" alt="{{ object.title}}" height="125" width="300"  align="middle">
     
