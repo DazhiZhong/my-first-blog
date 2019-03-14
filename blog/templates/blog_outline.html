@@ -3,10 +3,12 @@
 {% block outline %}
 {% for object in allblog %}
 <h1><strong>  {{object.title}}</strong>
-    <img src="/static/{{object.image}}" alt="{{ object.title}}" height="75" width="300"  align="middle">
-    </h1>
-    <button onclick="window.location.href='{{object.get_absolute_url}}'" > 购买 </button>
+{% load static%}
 
+    <img src="/{{ object.image}}" alt="{{ object.title}}" height="125" width="300"  align="middle">
+    
+    <button onclick="window.location.href='{{object.get_absolute_url}}'" > 购买 </button>
+</h1>
 
 {% endfor %}
 {% endblock outline %}

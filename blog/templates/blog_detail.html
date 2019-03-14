@@ -1,7 +1,7 @@
 {% extends 'base_blog.html' %}
 {% block detail %}
 <h1>{{blog.title}}</h1>
-<img src="/static/{{object.image}}" alt="{{ object.title}}"  align="middle">
+<img src="/{{object.image}}" alt="{{ object.title}}"  align="middle">
 <div></div>
     <form action='.' method='POST'>{% csrf_token %}
         <input type='submit' value='购买' /> 
