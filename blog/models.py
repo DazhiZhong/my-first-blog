@@ -4,8 +4,8 @@ from django.urls import reverse
 class Blog(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     body = models.TextField()
-    image = models.ImageField(upload_to='static/', blank=False,null=True)
-    payment = models.ImageField(upload_to='static/', height_field=None, width_field=None, max_length=None)
+    image = models.ImageField(upload_to='assets/', blank=False,null=True)
+    payment = models.ImageField(upload_to='assets/', height_field=None, width_field=None, max_length=None)
     def get_absolute_url(self):
         return reverse("Blog:blog_detail", kwargs={"blog_id": self.id})
         
