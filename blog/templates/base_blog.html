@@ -1,0 +1,21 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+    <title> FML </title>
+    <link rel="stylesheet" href="{% static 'background.css' %}">
+    </head>
+<body>
+    {% include 'head.html' %}
+    {% block detail %}
+    {% endblock detail %}
+    {% block outline %}
+    {% endblock outline %}
+    {% block create %}
+    <p>hello {{un}}</p>
+    <a href='/blog/login/'>not you? re-login!</a>
+    {% endblock create %}
+
+
+    </body>
+</html>
