@@ -4,7 +4,6 @@
 {% for object in allblog %}
 <h1><strong>  {{object.title}}</strong>
 {% load static%}
-    {{object.image}}
     <img src="/{{ object.image}}" alt="{{ object.title}}" height="125" width="300"  align="middle">
     
     <button onclick="window.location.href='{{object.get_absolute_url}}'" > 购买 </button>
