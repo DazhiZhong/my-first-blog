@@ -11,7 +11,7 @@ class Blog(models.Model):
         
 class Users(models.Model):
     username = models.CharField(max_length=50)
-    #password = models.CharField(max_length=50,min_lenth=6)
+    #password = models.CharField(max_length=50)
     
 
 

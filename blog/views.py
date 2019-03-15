@@ -4,21 +4,22 @@ from .models import Blog,Users
 from .forms import BlogForm,UserForm
 import os
 username = ''
+users = {'AnonymousUser':'spooky guy'}
 IF_LOGIN = False
 def user_login_view(request):
     global username
+    requestuser=str(request.user)
     print('login in')
+    if requestuser in users.keys(): return redirect('Blog:blog_outline')
     user_form = UserForm(request.POST or None)
-
     if user_form.is_valid():
-        username = str(user_form.cleaned_data['username'])
-        if username != '':
-            IF_LOGIN=True
-            print('red:',username)
-            return redirect('Blog:blog_outline')
-        else:
+        if username == '':
             user_form = UserForm(request.POST or None)
-
+        user_form.save()
+        username = str(user_form.cleaned_data['username'])
+        users[requestuser] = username
+        #if username in allusers: print('asshole')
+        return redirect('Blog:blog_outline')
     user_form = UserForm(request.POST or None)
     created = {
         'form' : user_form       
@@ -28,35 +29,41 @@ def user_login_view(request):
 
 
 def blog_detail_view(request,blog_id):
+    requestuser=str(request.user)
+
     obj = Blog.objects.get(id=blog_id)
     if request.method == 'POST':
         return redirect('Blog:blog_pay',blog_id=blog_id)
     blogobject = {
         'blog':obj,
         'object':obj,
-        'un':username
+        'un':users[requestuser]
     }
     return render(request,'blog_detail.html',blogobject)
 
 
 def blog_pay_view(request,blog_id):
+    requestuser=str(request.user)
+
     obj = Blog.objects.get(id=blog_id)
     
     blogobject = {
         'object':obj,
-        'un':username
+        'un':users[requestuser]
     }
     return render(request,'blog_pay.html',blogobject)
 
 
 def blog_outline_view(request):
+    requestuser=str(request.user)
+
     global username,IF_LOGIN
-    if username == '': print('ass'); return redirect('Blog:users_login')
+    if not(requestuser in users.keys()) : print('ass'); return redirect('Blog:users_login')
     all_obj = Blog.objects.all()
     print(username)
     blogobject = {
         'allblog':all_obj,
-        'un':username
+        'un':users[requestuser]
 
     }
     return render(request,'blog_outline.html',blogobject)
