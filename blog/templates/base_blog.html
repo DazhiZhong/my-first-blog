@@ -5,7 +5,11 @@
     <title> FML </title>
     <link rel="stylesheet" href="{% static 'background.css' %}">
 	<meta name="viewport" content="user-scalable=yes, width=1240" />
-
+    <style>
+    div.a {
+        text-align: center;
+    }
+</style>
 
 
     </head>
@@ -19,8 +23,11 @@
     {% block outline %}
     {% endblock outline %}
     {% block create %}
+    <div class='a'>
     <p>hello {{un}}</p>
+
     <a href='/blog/login/'>not you? re-login!</a>
+    </div>
     {% endblock create %}
 
 

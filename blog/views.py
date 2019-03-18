@@ -6,11 +6,16 @@ import os,time
 username = ''
 users = {'AnonymousUser':'spooky guy'}
 IF_LOGIN = False
+timeboo = time.asctime()
+usercart = []
+cartdict = {}
+totalprice = 0
+
 def user_login_view(request):
     global username
     requestuser=str(request.user)
     print('login in')
-    if requestuser in users.keys(): return redirect('Blog:blog_outline')
+    #if requestuser in users.keys(): return redirect('Blog:blog_outline')
     user_form = UserForm(request.POST or None)
     if user_form.is_valid():
         if username == '':
@@ -30,10 +35,38 @@ def user_login_view(request):
 
 def blog_detail_view(request,blog_id):
     requestuser=str(request.user)
+    if not(requestuser in users.keys()) : print('ass'); return redirect('Blog:users_login')
+
+    global totalprice,usercart,cartdict
 
     obj = Blog.objects.get(id=blog_id)
+
+    allobjects = Blog.objects.all()
+    pricedict = {}
+    mydict = {}
+    for objects in allobjects:
+        temp=objects.get_id()
+        print(temp)
+        mydict[temp]=objects.title
+        pricedict[temp]=objects.price
+
     if request.method == 'POST':
-        return redirect('Blog:blog_pay',blog_id=blog_id)
+        wow=users[requestuser]+"  -  "+str(mydict[blog_id])+'\n'
+        usercart.append(str(mydict[blog_id]))
+        #print(usercart)
+        totalprice += pricedict[blog_id]
+        #print(wow,totalprice)#mydict[blog_id]
+        tempdict = {
+            'allcart':usercart,
+            'totalprice':totalprice
+        }
+        cartdict[users[requestuser]]=tempdict
+        print(cartdict[users[requestuser]]['allcart'])
+        tempfile = open('./assets/text.txt','a')
+        tempfile.write(wow)
+        tempfile.close()
+
+
     blogobject = {
         'blog':obj,
         'object':obj,
@@ -44,13 +77,15 @@ def blog_detail_view(request,blog_id):
 
 def blog_pay_view(request,blog_id):
     requestuser=str(request.user)
+    if not(requestuser in users.keys()) : print('ass'); return redirect('Blog:users_login')
+
     allobjects = Blog.objects.all()
     mydict = {}
     for objects in allobjects:
         temp=objects.get_id()
         mydict[temp]=objects.title
     if request.method == 'POST':
-        wow=requestuser+mydict[blog_id]+'\n'
+        wow=users[requestuser]+mydict[blog_id]+'\n'
         print(wow)#mydict[blog_id]
         tempfile = open('./assets/text.txt','a')
         tempfile.write(wow)
