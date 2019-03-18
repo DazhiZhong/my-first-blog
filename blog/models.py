@@ -8,6 +8,8 @@ class Blog(models.Model):
     payment = models.ImageField(upload_to='assets/', height_field=None, width_field=None, max_length=None)
     def get_absolute_url(self):
         return reverse("Blog:blog_detail", kwargs={"blog_id": self.id})
+    def get_id(self):
+        return self.id
         
 class Users(models.Model):
     username = models.CharField(max_length=50)

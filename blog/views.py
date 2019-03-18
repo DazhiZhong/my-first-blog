@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import Http404,HttpResponse
 from .models import Blog,Users
 from .forms import BlogForm,UserForm
-import os
+import os,time
 username = ''
 users = {'AnonymousUser':'spooky guy'}
 IF_LOGIN = False
@@ -44,7 +44,17 @@ def blog_detail_view(request,blog_id):
 
 def blog_pay_view(request,blog_id):
     requestuser=str(request.user)
-
+    allobjects = Blog.objects.all()
+    mydict = {}
+    for objects in allobjects:
+        temp=objects.get_id()
+        mydict[temp]=objects.title
+    if request.method == 'POST':
+        wow=requestuser+mydict[blog_id]+'\n'
+        print(wow)#mydict[blog_id]
+        tempfile = open('./assets/text.txt','a')
+        tempfile.write(wow)
+        tempfile.close()
     obj = Blog.objects.get(id=blog_id)
     
     blogobject = {
