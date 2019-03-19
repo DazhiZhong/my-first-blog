@@ -140,6 +140,9 @@ button{
 	outline: none!important;
 }
 
+.btn-rd{
+	border-radius: 40px;
+}
 .btn-xl{
 	padding: 16px 40px;
 	font-size: 28px;
@@ -147,6 +150,16 @@ button{
 
 
 
+/* = Text & Icon Styles
+-------------------------------------------------------------- */
+.blockquote{
+	padding:0 20px;
+	border-left:2px solid;
+}
+.blockquote.text-right{
+	border-left:0;
+	border-right:2px solid;
+}
 
 
 /* = Cards
@@ -164,6 +177,24 @@ button{
 	border-radius:0 0 29px 29px;
 }
 
+/* = Dividers
+-------------------------------------------------------------- */
+.divider-h{
+	padding:20px 0;
+	width:100%;
+	display:inline-block;
+}
+.divider-h span{
+	display: block;
+	border-top:1px solid transparent;
+}
+.divider-half{
+	width: 50%;
+	margin: 0 auto;
+}
+.dropdown-menu .divider-h,.dropdown-menu .divider-half{
+	padding:0;
+}
 
 /* = Forms
 -------------------------------------------------------------- */
@@ -250,6 +281,21 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 }
 .field-style{
 	height:52px;
+}
+.p-8-style{
+	font-size:40px;
+	width:100%;
+}
+.btn-button-style{
+	width:17.68%;
+	border-radius:14px 14px 14px 14px;
+}
+.btn-12-style{
+	width:29.13%;
+	border-radius:15px 15px 15px 15px;
+}
+.h3-999999-style{
+	width:100%;
 }
 
 /* = Colour
