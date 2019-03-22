@@ -5,10 +5,18 @@
     <title> FML </title>
     <link rel="stylesheet" href="{% static 'background.css' %}">
 	<meta name="viewport" content="user-scalable=yes, width=1240" />
+<<<<<<< HEAD
 
 <div id="top_hype_container" style="margin:auto;position:relative;width:1240px;height:90px;overflow:hidden;">
 		<script type="text/javascript" charset="utf-8" src="/assets/top.hyperesources/top_hype_generated_script.js?25133"></script>
 	</div>
+=======
+    <style>
+    div.a {
+        text-align: center;
+    }
+</style>
+>>>>>>> ade200fa5aa0f271ac01ecb9b627447f47b6979b
 
 
     </head>
@@ -16,14 +24,21 @@
 
 	
 
+<<<<<<< HEAD
     {% include 'head.html' %}
+=======
+    
+>>>>>>> ade200fa5aa0f271ac01ecb9b627447f47b6979b
     {% block detail %}
     {% endblock detail %}
     {% block outline %}
     {% endblock outline %}
     {% block create %}
+    <div class='a'>
     <p>hello {{un}}</p>
+
     <a href='/blog/login/'>not you? re-login!</a>
+    </div>
     {% endblock create %}
 
 
