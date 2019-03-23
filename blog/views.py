@@ -146,3 +146,17 @@ def blog_cart_view(request):
     }
 
     return render(request,'cart.html',cart)
+
+
+
+def blog_make_view(request):
+    create_form = BlogForm(request.POST,request.FILES)
+    print(create_form.is_valid())
+    if create_form.is_valid():
+        print(request.FILES)
+        print(create_form.cleaned_data['image'])
+        create_form.save()
+    forms = {
+        'form':create_form
+    }
+    return render(request,'blog_create.html',forms)

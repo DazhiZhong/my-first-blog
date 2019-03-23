@@ -8,6 +8,8 @@ class BlogForm(forms.ModelForm):
         fields = [
             'title',
             'body',
+            'image',
+            'price',
         ]
 
 
